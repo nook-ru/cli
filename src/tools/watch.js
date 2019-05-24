@@ -16,6 +16,7 @@ function createPattern(directories) {
 	return directories.reduce((acc, dir) => {
 		const directory = new Directory(dir);
 		const directoryConfigs = directory.getConfigs();
+		const distinct = (value, index, self) => self.indexOf(value) === index;
 
 		directoryConfigs.forEach((currentConfig) => {
 			acc.push(slash(path.resolve(currentConfig.context, '**/*.js')));
@@ -24,7 +25,7 @@ function createPattern(directories) {
 			acc.push(slash(path.resolve(currentConfig.context, '**/*.html')));
 		});
 
-		return acc;
+		return acc.filter(distinct);
 	}, []);
 }
 
