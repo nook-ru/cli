@@ -22,6 +22,7 @@ export default function isAllowed(fileName) {
 		case '.jsx':
 		case '.css':
 		case '.scss':
+		case '.html':
 			return true;
 		default:
 			return false;
